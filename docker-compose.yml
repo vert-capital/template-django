@@ -1,0 +1,30 @@
+version: '3'
+
+volumes:
+  data:
+
+services:
+  db:
+    image: postgres:11.7
+    volumes:
+    - ./db/:/db
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: database
+    ports:
+      - 5432:5432
+  app:
+    build: ./
+    command: >
+        bash -c "pip install -r requirements.txt 
+        && python manage.py migrate
+        && python manage.py runserver 0.0.0.0:8080"
+    volumes:
+      - ./:/app
+    ports:
+      - "8080:8080"
+    links:
+      - db
+    depends_on:
+      - db

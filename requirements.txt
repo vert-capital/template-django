@@ -1,0 +1,6 @@
+django
+python-decouple
+psycopg2
+requests
+pillow
+https://github.com/darklow/django-suit/tarball/v2
