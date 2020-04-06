@@ -26,19 +26,25 @@ SECRET_KEY = '24&j7yo7)tm=l2v(&4b5349$*8y6elu8^7c(v0tb3a7seg^%5e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'apps.main.apps.SuitConfig',
+    'conf.apps.SuitConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #third-party apps
+    'rest_framework',
+
+    #my apps
+    'apps.main'
 ]
 
 MIDDLEWARE = [
