@@ -7,3 +7,4 @@ https://github.com/darklow/django-suit/tarball/v2
 djangorestframework
 markdown
 django-filter
+ptvsd==4.3.2
