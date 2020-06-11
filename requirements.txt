@@ -9,7 +9,6 @@ django-filter
 ptvsd==4.3.2
 uvicorn
 channels
-r-django-jet
 djangorestframework-jwt
 django-import-export
 django-filter
