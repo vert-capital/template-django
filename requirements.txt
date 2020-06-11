@@ -13,3 +13,4 @@ r-django-jet
 djangorestframework-jwt
 django-import-export
 django-filter
+django-3-jet
