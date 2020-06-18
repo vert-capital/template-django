@@ -1,13 +1,6 @@
-import binascii
-import os
-
-from django.conf import settings
-from django.contrib.auth import get_user_model
-from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager,
-                                        Group, PermissionsMixin)
 from django.db import models
-from django.utils.translation import ugettext
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 
 
 class UserManager(BaseUserManager):
@@ -58,13 +51,14 @@ class UserManager(BaseUserManager):
 
         return self._create_user(email, password, **extra_fields)
 
+
 class Usuario(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
         _('email'),
         max_length=150,
         unique=True,
         help_text=_('Obrigatório. 150 caracteres ou menos. São permitidos números, letras e @ /. / + / - / _ .'),
-        error_messages={ 'unique': _("Já existe um usuario cadastrado com este email."), },
+        error_messages={'unique': _("Já existe um usuario cadastrado com este email."), },
     )
 
     name = models.CharField(_('Nome'), max_length=150)

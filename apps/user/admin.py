@@ -1,6 +1,6 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import ugettext as _
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 from .forms import UserChangeForm, UserCreationForm
 from .models import Usuario
@@ -11,7 +11,6 @@ class UserAdmin(BaseUserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
 
-
     def groups_display(self, obj):
         return ', '.join([
             group.name for group in obj.groups.all()
@@ -19,7 +18,7 @@ class UserAdmin(BaseUserAdmin):
     groups_display.short_description = 'Grupos'
 
     list_display = ('email', 'name', 'date_joined', 'is_superuser', 'is_active', )
-    list_filter = ('email', 'name', 'date_joined', 'is_superuser',  )
+    list_filter = ('email', 'name', 'date_joined', 'is_superuser',)
 
     fieldsets = (
         (None, {'fields': ('email', 'password')}),

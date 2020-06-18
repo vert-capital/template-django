@@ -1,6 +1,6 @@
 from django import forms
-from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.utils.translation import ugettext as _
+from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 from .models import Usuario
 
@@ -30,9 +30,9 @@ class UserCreationForm(forms.ModelForm):
 
 
 class UserChangeForm(forms.ModelForm):
-    password = ReadOnlyPasswordHashField(label= ("Senha"),
-        help_text= ("Esta é a senha criptografada do usuário, mas você pode alterar "
-                    "acessando <a href=\"../password/\">este formulário</a>."))
+    password = ReadOnlyPasswordHashField(label=("Senha"),
+                                         help_text=("Esta é a senha criptografada do usuário, mas você pode alterar "
+                                                    "acessando <a href=\"../password/\">este formulário</a>."))
 
     def __init__(self, *args, **kwargs):
         super(UserChangeForm, self).__init__(*args, **kwargs)
