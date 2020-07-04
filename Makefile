@@ -28,35 +28,35 @@ _rebuild: show_env
 	docker-compose -f ${DOCKER_COMPOSE_FILE} down
 	docker-compose -f ${DOCKER_COMPOSE_FILE} build --no-cache --force-rm
 
-up:
+up: show_env
 	docker-compose ${DOCKER_COMPOSE_FILE} up -d
 
-flake8:
+flake8: show_env
 	echo "verify pep8 ..."
 	docker-compose ${DOCKER_COMPOSE_FILE} exec app flake8 . && isort . -rc
 
-log:
+log: show_env
 	docker-compose ${DOCKER_COMPOSE_FILE} logs -f app
 
-stop:
+stop: show_env
 	docker-compose ${DOCKER_COMPOSE_FILE} stop
 
-status:
+status: show_env
 	docker-compose ${DOCKER_COMPOSE_FILE} ps
 
-restart:
+restart: show_env
 	docker-compose ${DOCKER_COMPOSE_FILE} restart
 
-sh:
+sh: show_env
 	docker-compose ${DOCKER_COMPOSE_FILE} exec ${ARGS} bash
 
-test:
+test: show_env
 	docker-compose ${DOCKER_COMPOSE_FILE} exec app pytest
 
-psql:
+psql: show_env
 	docker-compose ${DOCKER_COMPOSE_FILE} exec db psql -d database
 
-pgcli:
+pgcli: show_env
 	docker-compose ${DOCKER_COMPOSE_FILE} exec app pgcli postgres://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}
 
 _drop_db:
@@ -66,18 +66,18 @@ _drop_db:
 _create_db:
 	docker-compose ${DOCKER_COMPOSE_FILE} up -d db
 
-recreate_db: _drop_db _create_db
+recreate_db: show_env _drop_db _create_db
 
-createsuperuser:
+createsuperuser: show_env
 	docker-compose ${DOCKER_COMPOSE_FILE} exec app ${PYTHON_EXEC} ./manage.py shell -c "from apps.accounts.models import User; User.objects.create_superuser('root@root.com.br', 'root', first_name='Admin', last_name='Root'); print('Superuser created: root@root.com.br:root')"
 
 
-migrate:
+migrate: show_env
 	docker-compose ${DOCKER_COMPOSE_FILE} exec app ${PYTHON_EXEC} manage.py migrate ${ARGS}
 
-makemigrations:
+makemigrations: show_env
 	docker-compose ${DOCKER_COMPOSE_FILE} exec app ${PYTHON_EXEC} manage.py makemigrations ${ARGS}
 	docker-compose ${DOCKER_COMPOSE_FILE} exec app ${PYTHON_EXEC} manage.py migrate
 
-busca_rastreio:
-	docker-compose ${DOCKER_COMPOSE_FILE} exec app ${PYTHON_EXEC} manage.py busca_rastreio
+pip_install: show_env
+	docker-compose ${DOCKER_COMPOSE_FILE} exec app ${PYTHON_EXEC} -m pip install -r requirements.txt
