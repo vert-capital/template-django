@@ -1,0 +1,20 @@
+version: "3.7"
+
+volumes:
+  data:
+
+services:
+  db:
+    image: postgres:12.4-alpine
+    env_file: ./src/.env
+  app:
+    build:
+      context: ./src
+      dockerfile: ./Dockerfile
+    environment:
+      DJANGO_DEBUG: 1
+      DJANGO_SETTINGS_MODULE: conf.settings
+    volumes:
+      - ./src:/app
+    depends_on:
+      - db

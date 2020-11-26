@@ -1,34 +1,19 @@
-version: '3'
+version: "3.7"
 
 volumes:
   data:
 
 services:
-  db:
-    image: postgres:11.7
-    volumes:
-    - ./db/:/db
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
-      POSTGRES_DB: database
-    ports:
-      - 5432:5432
   app:
-    build: ./
-    command: >
-        bash -c "pip install -r requirements.txt 
-        && python manage.py migrate
-        && python manage.py runserver 0.0.0.0:8080"
-    environment:
-      DJANGO_DEBUG: 1
-      DJANGO_SETTINGS_MODULE: conf.settings
-    volumes:
-      - ./:/app
+    build:
+      context: ./src
     ports:
-      - "8080:8080"
-      - "8888:8888"
-    links:
-      - db
-    depends_on:
-      - db
+        - 8080:8080
+    env_file: ./src/.env
+    environment:
+        - PYTHONUNBUFFERED=1
+    volumes:
+      - ./src:/app
+  redis:
+    image: redis:6.0-rc4-alpine
+    command: redis-server
