@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 
 from .views import (
     AccountPasswordResetView, AccountPasswordResetDoneView, AccountPasswordResetConfirmView,
@@ -12,4 +12,5 @@ urlpatterns = [
     path('password_reset/done/', AccountPasswordResetDoneView.as_view(), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', AccountPasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset/done/', AccountPasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    path('api/user/', include('apps.user.api.urls')),
 ]
