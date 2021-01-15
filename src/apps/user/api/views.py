@@ -3,7 +3,7 @@ from rest_framework.permissions import AllowAny
 
 from apps.user.models import User
 
-from .serielizers import UserSerializer
+from .serializers import UserSerializer
 
 
 class UserCreate(generics.CreateAPIView):
