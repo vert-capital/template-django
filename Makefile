@@ -37,11 +37,11 @@ checkcode: show_env
 
 flake8: show_env
 	echo "verify pep8 ..."
-	docker-compose ${DOCKER_COMPOSE_FILE} exec app flake8 . && isort .
+	docker-compose ${DOCKER_COMPOSE_FILE} exec app black . && isort . && flake8 . 
 
 localflake8: show_env
 	echo "verify pep8 ..."
-	flake8 . && isort .
+	black . && isort . && flake8 . 
 
 log: show_env
 	docker-compose ${DOCKER_COMPOSE_FILE} logs -f --tail 200 app
