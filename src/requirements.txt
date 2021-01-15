@@ -15,7 +15,7 @@ cryptography==3.2
 daphne==2.5.0
 defusedxml==0.6.0
 diff-match-patch==20200713
-Django==3.0.10
+Django==3.1.5
 django-3-jet==1.0.8
 django-ckeditor==6.0.0
 django-classy-tags==2.0.0
@@ -41,7 +41,7 @@ idna==2.10
 importlib-metadata==2.0.0
 incremental==17.5.0
 iniconfig==1.0.1
-isort==4.3.21
+isort==5.7.0
 jdcal==1.4.1
 Markdown==3.3
 MarkupPy==1.14
@@ -99,3 +99,4 @@ django-redis==4.12.1
 django-widget-tweaks
 xlrd2==1.2.6
 django-ckeditor==6.0.0
+black~=20.8b1

@@ -1,6 +1,6 @@
 import pytest
-from pytest_factoryboy import register
 from django.contrib.auth import get_user_model
+from pytest_factoryboy import register
 
 from apps.user.tests.factories import UserFactory
 
@@ -11,26 +11,26 @@ register(UserFactory)
 @pytest.fixture
 def headers():
     """default headers on make request"""
-    return {'content_type': "application/json"}
+    return {"content_type": "application/json"}
 
 
 @pytest.fixture
 def user():
-    '''
+    """
     Create a user with add_event and view_series permissions
-    '''
+    """
     klass = get_user_model()
-    user = klass.objects.create(email='root_tester@root.com.br')
+    user = klass.objects.create(email="root_tester@root.com.br")
     return user
 
 
 @pytest.fixture
 def specific_user(role):
-    '''
+    """
     Create a user with add_event and view_series permissions
-    '''
+    """
     klass = get_user_model()
-    user = klass.objects.create(email='root_tester@root.com.br', role=role)
+    user = klass.objects.create(email="root_tester@root.com.br", role=role)
     return user
 
 

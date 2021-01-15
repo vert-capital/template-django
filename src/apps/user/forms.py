@@ -1,17 +1,22 @@
 from django import forms
+from django.contrib.auth.forms import ReadOnlyPasswordHashField, SetPasswordForm
 from django.utils.translation import ugettext as _
-from django.contrib.auth.forms import SetPasswordForm, ReadOnlyPasswordHashField
 
 from .models import User
 
 
 class UserCreationForm(forms.ModelForm):
-    password1 = forms.CharField(label=_('Senha'), widget=forms.PasswordInput)
-    password2 = forms.CharField(label=_('Confirmação de senha'), widget=forms.PasswordInput)
+    password1 = forms.CharField(label=_("Senha"), widget=forms.PasswordInput)
+    password2 = forms.CharField(
+        label=_("Confirmação de senha"), widget=forms.PasswordInput
+    )
 
     class Meta:
         model = User
-        fields = ('email', 'name',)
+        fields = (
+            "email",
+            "name",
+        )
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
@@ -30,33 +35,36 @@ class UserCreationForm(forms.ModelForm):
 
 
 class UserChangeForm(forms.ModelForm):
-    password = ReadOnlyPasswordHashField(label=("Senha"),
-                                         help_text=("Esta é a senha criptografada do usuário, mas você pode alterar "
-                                                    "acessando <a href=\"../password/\">este formulário</a>."))
+    password = ReadOnlyPasswordHashField(
+        label=("Senha"),
+        help_text=(
+            "Esta é a senha criptografada do usuário, mas você pode alterar "
+            'acessando <a href="../password/">este formulário</a>.'
+        ),
+    )
 
     def __init__(self, *args, **kwargs):
         super(UserChangeForm, self).__init__(*args, **kwargs)
 
-        self.fields['groups'].required = True
+        self.fields["groups"].required = True
 
     class Meta:
         model = User
-        fields = '__all__'
+        fields = "__all__"
 
     def clean_password(self):
         return self.initial["password"]
 
 
 class ValidationConfirmNewPassword(SetPasswordForm):
-
     def clean(self):
         return super().clean()
 
     def clean_new_password2(self):
-        password1 = self.cleaned_data['new_password1']
-        password2 = self.cleaned_data['new_password2']
+        password1 = self.cleaned_data["new_password1"]
+        password2 = self.cleaned_data["new_password2"]
 
         if password1 and password2 and password1 != password2:
-            message = 'Os passwords não são iguais'
-            self.add_error('new_password2', message)
+            message = "Os passwords não são iguais"
+            self.add_error("new_password2", message)
         return password2
