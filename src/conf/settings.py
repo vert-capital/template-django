@@ -174,7 +174,7 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 8000
 # Email
 
 
-DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default="noreply@fundacaolemann.com")
+DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default="noreply@test.com")
 EMAIL_HOST = config("EMAIL_HOST", default="mail")
 EMAIL_PORT = config("EMAIL_PORT", default=1025, cast=int)
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="", cast=str)
@@ -228,4 +228,4 @@ THUMBNAIL_ALIASES = {
 # EMAIL
 ###
 
-EMAIL_FROM = config("EMAIL_FROM", default="teste@teste.com")
+EMAIL_FROM = config("EMAIL_FROM", default="test@test.com")
