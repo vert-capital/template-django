@@ -1,5 +1,25 @@
 {
-    "python.linting.pylintEnabled": false,
-    "python.linting.flake8Enabled": true,
-    "python.linting.enabled": true
+	"python.linting.pylintEnabled": false,
+	"python.linting.flake8Enabled": true,
+	"python.linting.enabled": true,
+	"compile-hero.disable-compile-files-on-did-save-code": true,
+	"files.autoSave": "onFocusChange",
+	"python.formatting.provider": "black",
+	"editor.formatOnSave": true,
+	"files.associations": {
+        "**/*.html": "html",
+        "**/templates/*/*.html": "django-html",
+        "**/templates/*": "django-txt",
+        "**/requirements{/**,*}.{txt,in}": "pip-requirements"
+    },
+    "emmet.includeLanguages": {
+        "django-html": "html"
+    },
+	"beautify.language": {
+        "html": [
+            "htm",
+            "html",
+            "django-html"
+        ]
+    }
 }
