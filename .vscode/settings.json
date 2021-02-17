@@ -6,20 +6,14 @@
 	"files.autoSave": "onFocusChange",
 	"python.formatting.provider": "black",
 	"editor.formatOnSave": true,
-	"files.associations": {
-        "**/*.html": "html",
-        "**/templates/*/*.html": "django-html",
-        "**/templates/*": "django-txt",
-        "**/requirements{/**,*}.{txt,in}": "pip-requirements"
+    "prettier.disableLanguages": ["django-html"],
+    "beautify.language": {
+      "html": [
+        "django-html"
+      ]
     },
-    "emmet.includeLanguages": {
-        "django-html": "html"
-    },
-	"beautify.language": {
-        "html": [
-            "htm",
-            "html",
-            "django-html"
-        ]
+    "[django-html]": {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "HookyQR.beautify"
     }
 }
