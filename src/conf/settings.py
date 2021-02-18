@@ -26,9 +26,12 @@ SECRET_KEY = "24&j7yo7)tm=l2v(&4b5349$*8y6elu8^7c(v0tb3a7seg^%5e"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", default=True, cast=bool)
+DEBUG_TOOLBAR = config("DEBUG_TOOLBAR", default=DEBUG, cast=bool)
 
 ALLOWED_HOSTS = ["*"]
 
+if DEBUG_TOOLBAR:
+    INTERNAL_IPS = type(str("c"), (), {"__contains__": lambda *a: True})()
 
 # Application definition
 
@@ -48,6 +51,7 @@ INSTALLED_APPS = [
     "easy_thumbnails",
     "django_filters",
     "ckeditor",
+    "debug_toolbar",
     # my apps
     "apps.main",
     "apps.user",
@@ -63,6 +67,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = "conf.urls"

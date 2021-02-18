@@ -100,3 +100,4 @@ django-widget-tweaks
 xlrd2==1.2.6
 django-ckeditor==6.0.0
 black~=20.8b1
+django-debug-toolbar==3.1.1
