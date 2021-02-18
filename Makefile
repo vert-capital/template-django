@@ -29,7 +29,7 @@ _rebuild: show_env
 	docker-compose ${DOCKER_COMPOSE_FILE} build --no-cache --force-rm
 
 up: show_env
-	docker-compose ${DOCKER_COMPOSE_FILE} up -d --remove-orphans --build
+	docker-compose ${DOCKER_COMPOSE_FILE} up -d --remove-orphans
 
 checkcode: show_env
 	echo "verify pep8 ..."
