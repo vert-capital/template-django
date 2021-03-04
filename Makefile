@@ -121,3 +121,6 @@ showmigrations: show_env
 restartq: show_env
 	docker-compose ${DOCKER_COMPOSE_FILE} stop djangoq
 	docker-compose ${DOCKER_COMPOSE_FILE} up -d djangoq
+
+generate_factories: show_env
+	docker-compose ${DOCKER_COMPOSE_FILE} exec app ${PYTHON_EXEC} manage.py generate_factories

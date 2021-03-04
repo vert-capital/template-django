@@ -4,6 +4,13 @@
 
 static_collected/
 .localstack/
+src/model_factories/admin/
+src/model_factories/auth/
+src/model_factories/contenttypes/
+src/model_factories/dashboard/
+src/model_factories/jet/
+src/model_factories/django_q/
+src/model_factories/sessions/
 
 ### Django ###
 *.log

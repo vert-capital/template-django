@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "django_filters",
     "ckeditor",
     "debug_toolbar",
+    "factory_generator",
     # my apps
     "apps.main",
     "apps.user",
