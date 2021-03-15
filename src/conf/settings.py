@@ -235,3 +235,12 @@ THUMBNAIL_ALIASES = {
 ###
 
 EMAIL_FROM = config("EMAIL_FROM", default="test@test.com")
+
+# FACTORY GENERATE
+
+FACTORY_ONLY_APPS = [
+    "main",
+    "user",
+]
+
+FACTORY_IGNORE_INIT_IMPORT = True
