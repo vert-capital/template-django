@@ -122,5 +122,8 @@ restartq: show_env
 	docker-compose ${DOCKER_COMPOSE_FILE} stop djangoq
 	docker-compose ${DOCKER_COMPOSE_FILE} up -d djangoq
 
-generate_factories: show_env
+generate_factories_bot: show_env
 	docker-compose ${DOCKER_COMPOSE_FILE} exec app ${PYTHON_EXEC} manage.py generate_factories
+	
+generate_factories: show_env generate_factories_bot chown_project flake8
+
