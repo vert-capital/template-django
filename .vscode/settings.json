@@ -1,4 +1,9 @@
 {
+  "python.analysis.diagnosticMode": "workspace",
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.autoSearchPaths": true,
+  "python.analysis.completeFunctionParens": true,
+  "python.analysis.useLibraryCodeForTypes": true,
 	"python.linting.pylintEnabled": false,
 	"python.linting.flake8Enabled": true,
 	"python.linting.enabled": true,
