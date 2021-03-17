@@ -130,3 +130,9 @@ generate_factories_bot: show_env
 	
 generate_factories: show_env generate_factories_bot chown_project flake8
 
+create_venv: show_env
+	sudo apt-get install python3-dev python3-wheel python-dev gcc libpq-dev -y
+	python3 -m venv venv
+	source ./venv/bin/activate
+	pip install wheel
+	pip install -r src/requirements.txt
