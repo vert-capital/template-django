@@ -1,4 +1,8 @@
 {
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/src"
+  ],
+  "python.venvPath": "./venv",
   "python.analysis.diagnosticMode": "workspace",
   "python.analysis.autoImportCompletions": true,
   "python.analysis.autoSearchPaths": true,
@@ -20,5 +24,14 @@
     "[django-html]": {
       "editor.formatOnSave": true,
       "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "terminal.integrated.env.osx": {
+      "PYTHONPATH": "${workspaceFolder}/src",
+    },
+    "terminal.integrated.env.linux": {
+        "PYTHONPATH": "${workspaceFolder}/src",
+    },
+    "terminal.integrated.env.windows": {
+        "PYTHONPATH": "${workspaceFolder}/src",
     }
 }
