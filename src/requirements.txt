@@ -100,7 +100,7 @@ django-widget-tweaks
 xlrd2==1.2.6
 django-ckeditor==6.0.0
 black~=20.8b1
-django-debug-toolbar==3.1.1
+django-debug-toolbar==3.2.1
 git+https://github.com/akaytatsu/django-factory-generator.git
 freezegun==1.1.0
 requests-mock==1.8.0
