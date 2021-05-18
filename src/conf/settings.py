@@ -193,7 +193,7 @@ EMAIL_USE_TLS = config("EMAIL_USE_TLS", default=False, cast=bool)
 ###
 
 Q_CLUSTER = {
-    "name": "rede_lideres",
+    "name": "cluster",
     "workers": 2,
     "timeout": None,
     "django_redis": "default",
