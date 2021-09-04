@@ -2,36 +2,37 @@
   "python.analysis.extraPaths": [
     "${workspaceFolder}/src"
   ],
-  "python.venvPath": "./venv",
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportOptionalMemberAccess": "none",
+    "reportGeneralTypeIssues": "none"
+  },
   "python.analysis.diagnosticMode": "workspace",
   "python.analysis.autoImportCompletions": true,
   "python.analysis.autoSearchPaths": true,
   "python.analysis.completeFunctionParens": true,
   "python.analysis.useLibraryCodeForTypes": true,
-	"python.linting.pylintEnabled": false,
-	"python.linting.flake8Enabled": true,
-	"python.linting.enabled": true,
-	"compile-hero.disable-compile-files-on-did-save-code": true,
-	"files.autoSave": "onFocusChange",
-	"python.formatting.provider": "black",
-	"editor.formatOnSave": true,
-    "prettier.disableLanguages": ["django-html"],
-    "beautify.language": {
-      "html": [
-        "django-html"
-      ]
-    },
-    "[django-html]": {
-      "editor.formatOnSave": true,
-      "editor.defaultFormatter": "HookyQR.beautify"
-    },
-    "terminal.integrated.env.osx": {
-      "PYTHONPATH": "${workspaceFolder}/src",
-    },
-    "terminal.integrated.env.linux": {
-        "PYTHONPATH": "${workspaceFolder}/src",
-    },
-    "terminal.integrated.env.windows": {
-        "PYTHONPATH": "${workspaceFolder}/src",
-    }
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": true,
+  "python.linting.enabled": true,
+  "files.autoSave": "onFocusChange",
+  "python.formatting.provider": "black",
+  "editor.formatOnSave": true,
+  "beautify.language": {
+    "html": [
+      "django-html"
+    ]
+  },
+  "[django-html]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "HookyQR.beautify"
+  },
+  "terminal.integrated.env.osx": {
+    "PYTHONPATH": "${workspaceFolder}/src",
+  },
+  "terminal.integrated.env.linux": {
+    "PYTHONPATH": "${workspaceFolder}/src",
+  },
+  "terminal.integrated.env.windows": {
+    "PYTHONPATH": "${workspaceFolder}/src",
+  }
 }

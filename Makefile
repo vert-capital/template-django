@@ -4,6 +4,7 @@ MAKEFLAGS += --silent
 BASE_PATH=${PWD}
 PYTHON_EXEC=python
 DOCKER_COMPOSE_FILE=$(shell echo -f docker-compose.yml -f docker-compose.override.yml)
+VENV_PATH=~/venv/django_template # alterar aqui nome do projeto
 
 include src/.env
 export $(shell sed 's/=.*//' src/.env)
@@ -132,7 +133,7 @@ generate_factories: show_env generate_factories_bot chown_project flake8
 
 create_venv: show_env
 	sudo apt-get install python3-dev python3-wheel python-dev gcc libpq-dev -y
-	python3 -m venv venv
-	./venv/bin/python -m pip install --upgrade pip setuptools wheel
-	./venv/bin/pip install -r ./src/requirements.txt
+	python3 -m venv ${VENV_PATH}
+	${VENV_PATH}/bin/python -m pip install --upgrade pip setuptools wheel
+	${VENV_PATH}/bin/pip install -r ./src/requirements.txt
 
