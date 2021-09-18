@@ -5,6 +5,12 @@ import sys
 
 
 def main():
+    if os.environ.get("RUN_MAIN") and os.environ.get("DJANGO_DEBUG", False):
+        import ptvsd
+
+        # ptvsd.enable_attach("HdFkU9c4zfPPGSkgcPZV", address = ('0.0.0.0', 3005))
+        ptvsd.enable_attach(address=("0.0.0.0", 8888), redirect_output=True)
+
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "conf.settings")
     try:
         from django.core.management import execute_from_command_line

@@ -32,6 +32,14 @@ _rebuild: show_env
 up: show_env
 	docker-compose ${DOCKER_COMPOSE_FILE} up -d --remove-orphans
 
+up_debug: show_env
+	docker-compose ${DOCKER_COMPOSE_FILE} stop web
+	docker-compose ${DOCKER_COMPOSE_FILE} -f docker-compose.override.debug.yml up -d --remove-orphans
+
+up_normal: show_env
+	docker-compose ${DOCKER_COMPOSE_FILE} stop web
+	docker-compose ${DOCKER_COMPOSE_FILE} up -d --remove-orphans
+
 checkcode: show_env
 	echo "verify pep8 ..."
 	docker-compose ${DOCKER_COMPOSE_FILE} exec app flake8 . && isort . --check-only
