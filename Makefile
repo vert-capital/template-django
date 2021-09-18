@@ -4,7 +4,7 @@ MAKEFLAGS += --silent
 BASE_PATH=${PWD}
 PYTHON_EXEC=python
 DOCKER_COMPOSE_FILE=$(shell echo -f docker-compose.yml -f docker-compose.override.yml)
-VENV_PATH=~/venv/django_template # alterar aqui nome do projeto
+VENV_PATH=~/venv/django_template
 
 include src/.env
 export $(shell sed 's/=.*//' src/.env)
@@ -136,7 +136,7 @@ chown_project:
 
 generate_factories_bot: show_env
 	docker-compose ${DOCKER_COMPOSE_FILE} exec app ${PYTHON_EXEC} manage.py generate_factories
-	
+
 generate_factories: show_env generate_factories_bot chown_project flake8
 
 create_venv: show_env
