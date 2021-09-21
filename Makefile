@@ -7,7 +7,7 @@ DOCKER_COMPOSE_FILE=$(shell echo -f docker-compose.yml -f docker-compose.overrid
 VENV_PATH=~/venv/django_template
 
 include src/.env
-export $(shell sed 's/=.*//' src/.env
+export $(shell sed 's/=.*//' src/.env)
 show_env:
 	# Show wich DOCKER_COMPOSE_FILE and ENV the recipes will user
 	# It should be referenced by all other recipes you want it to show.
