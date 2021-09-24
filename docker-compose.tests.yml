@@ -14,7 +14,5 @@ services:
     environment:
       DJANGO_DEBUG: 1
       DJANGO_SETTINGS_MODULE: conf.settings
-    volumes:
-      - ./src:/app
     depends_on:
       - db
