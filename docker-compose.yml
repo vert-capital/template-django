@@ -12,8 +12,6 @@ services:
     env_file: ./src/.env
     environment:
         - PYTHONUNBUFFERED=1
-    volumes:
-      - ./src:/app
   redis:
     image: redis:6.0-rc4-alpine
     command: redis-server
