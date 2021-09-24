@@ -31,3 +31,5 @@ git+https://github.com/akaytatsu/django-factory-generator.git
 freezegun==1.1.0
 requests-mock==1.9.3
 pytest-vcr==1.0.2
+django-cas-ng==4.1.1
+Collectfast==2.2.0

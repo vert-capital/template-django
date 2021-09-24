@@ -27,6 +27,7 @@ SECRET_KEY = "24&j7yo7)tm=l2v(&4b5349$*8y6elu8^7c(v0tb3a7seg^%5e"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", default=True, cast=bool)
 DEBUG_TOOLBAR = config("DEBUG_TOOLBAR", default=DEBUG, cast=bool)
+LOCAL_ENV = config("LOCAL_ENV", default=True, cast=bool)
 
 ALLOWED_HOSTS = ["*"]
 
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "collectfast",
     "django.contrib.staticfiles",
     # third-party apps
     "rest_framework",
@@ -157,6 +159,36 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 
 ####
+# STORAGES
+###
+
+COLLECTFAST_ENABLED = False
+
+if not LOCAL_ENV:
+
+    AWS_QUERYSTRING_AUTH = False
+
+    AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID", None)
+    AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_ACCESS_KEY", None)
+    AWS_STORAGE_BUCKET_NAME = config("AWS_STORAGE_BUCKET_NAME", None)
+    AWS_S3_OBJECT_PARAMETERS = {
+        "CacheControl": "max-age=86400",
+    }
+
+    COLLECTFAST_ENABLED = True
+
+    STATICFILES_STORAGE = "conf.storage_backends.StaticStorage"
+    DEFAULT_FILE_STORAGE = "conf.storage_backends.PublicMediaStorage"
+    COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
+
+    AWS_LOCATION = config("AWS_LOCATION", "")
+
+    AWS_STATIC_LOCATION = f"{AWS_LOCATION}static/"
+    AWS_PUBLIC_MEDIA_LOCATION = f"{AWS_LOCATION}media/"
+    AWS_PRIVATE_MEDIA_LOCATION = f"{AWS_LOCATION}private/"
+
+
+####
 # JWT
 ###
 
@@ -207,8 +239,8 @@ Q_CLUSTER = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://{0}:{1}/0".format(
-            config("REDIS_HOST"), config("REDIS_PORT")
+        "LOCATION": "redis://{0}:{1}/{2}".format(
+            config("REDIS_HOST"), config("REDIS_PORT"), config("REDIS_DB", default=0)
         ),
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
