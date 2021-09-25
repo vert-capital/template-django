@@ -144,3 +144,5 @@ create_venv: show_env
 	${VENV_PATH}/bin/python -m pip install --upgrade pip setuptools wheel
 	${VENV_PATH}/bin/pip install -r ./src/requirements.txt
 
+upgrade_packages: show_env pip_install
+	docker-compose ${DOCKER_COMPOSE_FILE} exec app pip-upgrade --skip-virtualenv-check
