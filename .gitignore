@@ -2,8 +2,6 @@
 # Created by https://www.toptal.com/developers/gitignore/api/django,vuejs,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=django,vuejs,node
 
-.env
-
 static_collected/
 .localstack/
 src/model_factories/admin/
@@ -24,8 +22,6 @@ db.sqlite3
 db.sqlite3-journal
 src/media
 
-.env
-
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
 # in your Git repository. Update and uncomment the following line accordingly.
 # <django-project-name>/staticfiles/
@@ -37,6 +33,8 @@ src/media
 
 # C extensions
 *.so
+
+.env
 
 # Distribution / packaging
 .Python
