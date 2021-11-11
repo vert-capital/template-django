@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     "ckeditor",
     "debug_toolbar",
     "factory_generator",
+    "corsheaders",
     # my apps
     "apps.main",
     "apps.user",
@@ -63,6 +64,7 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = "user.User"
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -277,3 +279,7 @@ FACTORY_ONLY_APPS = [
 ]
 
 FACTORY_IGNORE_INIT_IMPORT = True
+
+# Django Cors
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = False
