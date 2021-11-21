@@ -10,6 +10,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("auth/user/login", obtain_jwt_token),
     path("", include("apps.user.urls")),
+    path("", include("apps.main.urls")),
 ]
 
 if settings.LOCAL_ENV:
