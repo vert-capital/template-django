@@ -35,3 +35,4 @@ django-cas-ng==4.1.1
 Collectfast==2.2.0
 pip-upgrader
 django-cors-headers==3.9.0
+uvicorn==0.17.6

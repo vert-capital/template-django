@@ -13,4 +13,4 @@ COPY ./ ./
 
 ENTRYPOINT ["sh", "./docker_assets/entrypoint.sh"]
 
-CMD ["gunicorn", "-b", "0.0.0.0:8080", "-w", "4", "--access-logfile", "-", "--error-logfile", "-", "--log-level", "debug", "conf.wsgi"]
+CMD ["gunicorn", "conf.asgi:application", "-b", "0.0.0.0:8080", "--access-logfile", "-", "--error-logfile", "-", "--log-level", "warning", "-k", "uvicorn.workers.UvicornWorker"]
