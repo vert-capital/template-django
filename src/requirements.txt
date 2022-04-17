@@ -36,3 +36,4 @@ Collectfast==2.2.0
 pip-upgrader
 django-cors-headers==3.9.0
 uvicorn==0.17.6
+click==8.0.2
