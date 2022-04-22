@@ -1,5 +1,5 @@
 coverage==5.5
-Django==3.2.4
+Django==3.2.13
 django-3-jet==1.0.8
 django-filter==2.4.0
 djangorestframework==3.12.4
