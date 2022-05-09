@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from datetime import timedelta
 
 from decouple import config
 
@@ -37,8 +38,6 @@ if DEBUG_TOOLBAR:
 # Application definition
 
 INSTALLED_APPS = [
-    "jet.dashboard",
-    "jet",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -187,18 +186,11 @@ if not LOCAL_ENV:
     AWS_LOCATION = config("AWS_LOCATION", "")
 
     AWS_STATIC_LOCATION = f"{AWS_LOCATION}static/"
-    AWS_PUBLIC_MEDIA_LOCATION = f"{AWS_LOCATION}media/"
-    AWS_PRIVATE_MEDIA_LOCATION = f"{AWS_LOCATION}private/"
-
-
-####
-# JWT
-###
-
+    AWS_PUBLIC_MEDIA
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_jwt.authentication.JSONWebTokenAuthentication",
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.BasicAuthentication",
     ),
@@ -209,6 +201,27 @@ REST_FRAMEWORK = {
 JWT_AUTH = {
     "JWT_VERIFY_EXPIRATION": False,
 }
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(weeks=120),
+    "BLACKLIST_AFTER_ROTATION": False,
+    "UPDATE_LAST_LOGIN": True,
+    "ALGORITHM": "HS256",
+    "SIGNING_KEY": SECRET_KEY,
+    "AUTH_HEADER_TYPES": ("JWT",),
+    "AUTH_HEADER_NAME": "HTTP_AUTHORIZATION",
+    "USER_ID_FIELD": "email",
+    "USER_ID_CLAIM": "email",
+    "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
+    "TOKEN_TYPE_CLAIM": "token_type",
+}_LOCATION = f"{AWS_LOCATION}media/"
+    AWS_PRIVATE_MEDIA_LOCATION = f"{AWS_LOCATION}private/"
+
+
+####
+# JWT
+###
+
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 8000
 

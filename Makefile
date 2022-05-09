@@ -41,7 +41,8 @@ up_normal: show_env
 
 checkcode: show_env
 	echo "verify pep8 ..."
-	docker-compose ${DOCKER_COMPOSE_FILE} exec app flake8 . && isort . --check-only
+	docker-compose ${DOCKER_COMPOSE_FILE} exec app flake8 .
+	docker-compose ${DOCKER_COMPOSE_FILE} exec app isort . --check-only
 
 flake8: show_env
 	echo "verify pep8 ..."

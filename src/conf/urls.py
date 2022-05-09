@@ -5,8 +5,6 @@ from django.urls import include, path
 from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
-    path("jet/", include("jet.urls", "jet")),  # Django JET URLS
-    path("jet/dashboard/", include("jet.dashboard.urls", "jet-dashboard")),
     path("admin/", admin.site.urls),
     path("auth/user/login", obtain_jwt_token),
     path("", include("apps.user.urls")),
