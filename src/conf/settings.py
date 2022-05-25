@@ -244,7 +244,7 @@ Q_CLUSTER = {
     "name": "cluster",
     "workers": 2,
     "timeout": None,
-    "django_redis": "default",
+    'orm': 'default'
 }
 
 
@@ -253,16 +253,9 @@ Q_CLUSTER = {
 ###
 
 CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://{0}:{1}/{2}".format(
-            config("REDIS_HOST"), config("REDIS_PORT"), config("REDIS_DB", default=0)
-        ),
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-            # "PASSWORD": config('REDIS_PASSWORD'),
-        },
-        "KEY_PREFIX": "django_orm",
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'django_cache_table',
     }
 }
 

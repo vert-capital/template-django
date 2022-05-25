@@ -10,6 +10,4 @@ services:
     env_file: ./src/.env
     environment:
         - PYTHONUNBUFFERED=1
-  redis:
-    image: redis:6.0-rc4-alpine
-    command: redis-server
+
