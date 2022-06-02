@@ -186,7 +186,8 @@ if not LOCAL_ENV:
     AWS_LOCATION = config("AWS_LOCATION", "")
 
     AWS_STATIC_LOCATION = f"{AWS_LOCATION}static/"
-    AWS_PUBLIC_MEDIA
+    AWS_PUBLIC_MEDIA_LOCATION = f"{AWS_LOCATION}media/"
+    AWS_PRIVATE_MEDIA_LOCATION = f"{AWS_LOCATION}private/"
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_AUTHENTICATION_CLASSES": (
@@ -214,8 +215,7 @@ SIMPLE_JWT = {
     "USER_ID_CLAIM": "email",
     "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
     "TOKEN_TYPE_CLAIM": "token_type",
-}_LOCATION = f"{AWS_LOCATION}media/"
-    AWS_PRIVATE_MEDIA_LOCATION = f"{AWS_LOCATION}private/"
+}
 
 
 ####
@@ -243,8 +243,9 @@ EMAIL_USE_TLS = config("EMAIL_USE_TLS", default=False, cast=bool)
 Q_CLUSTER = {
     "name": "cluster",
     "workers": 2,
-    "timeout": None,
-    'orm': 'default'
+    "timeout": 60 * 60 * 24,  # 1 day
+    "retry": 60 * 60 * 24 + 5,  # 1 day 5 seconds
+    "orm": "default",
 }
 
 
@@ -253,9 +254,9 @@ Q_CLUSTER = {
 ###
 
 CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-        'LOCATION': 'django_cache_table',
+    "default": {
+        "BACKEND": "django.core.cache.backends.db.DatabaseCache",
+        "LOCATION": "django_cache_table",
     }
 }
 

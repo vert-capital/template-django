@@ -11,3 +11,9 @@ DEFAULT_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
 DATABASES = {
     "default": {"ENGINE": "django.db.backends.sqlite3", "NAME": ":memory:", "TEST": {}}
 }
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.dummy.DummyCache",
+    }
+}
