@@ -1,4 +1,9 @@
 {
+  "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true
+    }
+  },
   "python.analysis.extraPaths": [
     "${workspaceFolder}/src"
   ],
@@ -34,5 +39,9 @@
   },
   "terminal.integrated.env.windows": {
     "PYTHONPATH": "${workspaceFolder}/src",
-  }
+  },
+  "python.analysis.inlayHints.variableTypes": true,
+  "python.analysis.inlayHints.functionReturnTypes": true,
+  "editor.experimental.stickyScroll.enabled": true,
+  "editor.experimental.useCustomCodeActionMenu": true
 }
