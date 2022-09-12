@@ -1,5 +1,8 @@
 #!/bin/sh
 
+echo "Runnning Requirements.txt"
+yes | pip install -r requirements.txt
+
 echo "Runnning Database Migrations..."
 yes | python manage.py migrate
 
