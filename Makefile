@@ -149,3 +149,6 @@ create_venv: show_env
 
 upgrade_packages: show_env pip_install
 	docker-compose ${DOCKER_COMPOSE_FILE} exec app pip-upgrade --skip-virtualenv-check
+
+kafka_consumer: show_env
+    docker-compose ${DOCKER_COMPOSE_FILE} exec app ${PYTHON_EXEC} ./manage.py kafka_consumer

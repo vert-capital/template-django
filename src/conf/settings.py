@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "factory_generator",
     "corsheaders",
+    "django_kafka",
     # my apps
     "apps.main",
     "apps.user",
@@ -290,3 +291,13 @@ FACTORY_IGNORE_INIT_IMPORT = True
 # Django Cors
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = False
+
+# KAFKA
+KAFKA_BOOTSTRAP_SERVER: str = config(
+    "KAFKA_BOOTSTRAP_SERVER", cast=str, default="kafka:9092"
+)
+KAFKA_CLIENT_ID: str = config("KAFKA_CLIENT_ID", cast=str, default="kafka-python")
+KAFKA_GROUP_ID: str = config("KAFKA_GROUP_ID", cast=str, default="kafka-python")
+KAFKA_TOPICS = {
+    "user": "apps.user.kafka_consumer.user_consumer",
+}

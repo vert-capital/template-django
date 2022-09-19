@@ -12,5 +12,8 @@ yes | python manage.py createcachetable
 echo "Runnning CollectStatic..."
 yes | python manage.py collectstatic --no-input
 
+echo "setup of kafka"
+python manage.py kafka_setup
+
 echo "starting $@"
 exec "$@"
