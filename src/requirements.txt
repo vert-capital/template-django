@@ -1,5 +1,5 @@
 coverage==6.4.2
-django==3.2.14
+django==3.2.15
 django-filter==22.1
 djangorestframework==3.13.1
 djangorestframework-jwt==1.11.0

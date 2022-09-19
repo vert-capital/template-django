@@ -42,6 +42,6 @@
   },
   "python.analysis.inlayHints.variableTypes": true,
   "python.analysis.inlayHints.functionReturnTypes": true,
-  "editor.experimental.stickyScroll.enabled": true,
-  "editor.experimental.useCustomCodeActionMenu": true
+  "editor.experimental.useCustomCodeActionMenu": true,
+  "editor.stickyScroll.enabled": true
 }
