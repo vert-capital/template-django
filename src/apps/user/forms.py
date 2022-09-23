@@ -46,7 +46,7 @@ class UserChangeForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(UserChangeForm, self).__init__(*args, **kwargs)
 
-        self.fields["groups"].required = True
+        self.fields["groups"].required = False
 
     class Meta:
         model = User
