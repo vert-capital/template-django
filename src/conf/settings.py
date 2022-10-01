@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "collectfast",
     "django.contrib.staticfiles",
     # third-party apps
+    "django_cas_ng",
     "rest_framework",
     "django_q",
     "widget_tweaks",
@@ -73,6 +74,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    "django_cas_ng.middleware.CASMiddleware",
 ]
 
 ROOT_URLCONF = "conf.urls"
@@ -300,4 +302,63 @@ KAFKA_CLIENT_ID: str = config("KAFKA_CLIENT_ID", cast=str, default="kafka-python
 KAFKA_GROUP_ID: str = config("KAFKA_GROUP_ID", cast=str, default="kafka-python")
 KAFKA_TOPICS = {
     "user": "apps.user.kafka_consumer.user_consumer",
+}
+
+
+####
+# SSO
+###
+
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "django_cas_ng.backends.CASBackend",
+)
+
+CAS_SERVER_URL = config(
+    "CAS_SERVER_URL", default="https://id-vertc-stg.ageriservicos.com.br/cas/"
+)
+
+CAS_CHECK_NEXT = False
+
+URL_CAS_SERVER_URL = CAS_SERVER_URL.replace("/cas/", "/")
+
+FRONTEND_AUTH_REDIRECT = config(
+    "FRONTEND_AUTH_REDIRECT", default="http://localhost:8000/auth"
+)
+
+if config("APM_SERVER_URL", None):
+    LOGGING = {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "handlers": {
+            "elasticapm": {
+                "level": "WARNING",
+                "class": "elasticapm.contrib.django.handlers.LoggingHandler",
+            },
+            "console": {
+                "level": "DEBUG",
+                "class": "logging.StreamHandler",
+            },
+        },
+        "loggers": {
+            "django-q": {
+                "handlers": ["elasticapm"],
+                "level": "ERROR",
+            },
+        },
+    }
+
+
+ELASTIC_APM = {
+    # Set the required service name. Allowed characters:
+    # a-z, A-Z, 0-9, -, _, and space
+    "SERVICE_NAME": config("APM_APP_NAME", None),
+    # Use if APM Server requires a secret token
+    "SECRET_TOKEN": config("APM_TOKEN", None),
+    # Set the custom APM Server URL (default: http://localhost:8200)
+    "SERVER_URL": config("APM_SERVER_URL", None),
+    # Set the service environment
+    "ENVIRONMENT": config("APM_ENVIROMENT", None),
+    # Set log level
+    "ELASTIC_APM_LOG_LEVEL": config("APM_LOG_LEVEL", "info"),
 }
