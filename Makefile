@@ -151,4 +151,7 @@ upgrade_packages: show_env pip_install
 	docker-compose ${DOCKER_COMPOSE_FILE} exec app pip-upgrade --skip-virtualenv-check
 
 kafka_consumer: show_env
-    docker-compose ${DOCKER_COMPOSE_FILE} exec app ${PYTHON_EXEC} ./manage.py kafka_consumer
+	docker-compose ${DOCKER_COMPOSE_FILE} exec app ${PYTHON_EXEC} ./manage.py kafka_consumer
+
+show_coverage: show_env coverage
+	cd src/htmlcov && python3 -m http.server --bind 0.0.0.0 9100
