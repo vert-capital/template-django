@@ -301,7 +301,7 @@ KAFKA_BOOTSTRAP_SERVER: str = config(
 KAFKA_CLIENT_ID: str = config("KAFKA_CLIENT_ID", cast=str, default="kafka-python")
 KAFKA_GROUP_ID: str = config("KAFKA_GROUP_ID", cast=str, default="kafka-python")
 KAFKA_TOPICS = {
-    "user": "apps.user.kafka_consumer.user_consumer",
+    "vertc-user": "apps.user.kafka_consumer.user_consumer",
 }
 
 
