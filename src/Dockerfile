@@ -2,6 +2,8 @@ FROM python:3.9.13-buster
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 
+RUN apt update -y && apt install librdkafka-dev -y
+
 RUN mkdir -p /app
 WORKDIR /app
 
