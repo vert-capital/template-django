@@ -93,6 +93,9 @@ recreate_db: show_env _drop_db _create_db
 createsuperuser: show_env
 	docker-compose ${DOCKER_COMPOSE_FILE} exec app ${PYTHON_EXEC} ./manage.py shell -c "from apps.user.models import User; User.objects.create_superuser('root@root.com.br', 'root', name='root'); print('Superuser created: root@root.com.br:root')"
 
+everyone_superuser: show_env
+	docker-compose ${DOCKER_COMPOSE_FILE} exec app ${PYTHON_EXEC} manage.py shell -c "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.all().update(is_staff=True, is_superuser=True); print('All users are superusers')"
+
 fixtures: show_env
 	docker-compose ${DOCKER_COMPOSE_FILE} exec app pytest --fixtures
 
