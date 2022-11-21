@@ -25,6 +25,9 @@ def create_or_update_user(user_data: dict) -> None:
     else:
         user = User()
 
+    if "image" in user_data:
+        user.image = user_data["image"]
+
     user.email = user_data["email"]
     user.name = user_data["name"]
     user.is_superuser = user_data["is_superuser"]
