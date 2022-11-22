@@ -16,17 +16,25 @@ def user_consumer(consumer: Consumer, msg: Message) -> None:
 
 
 def save_image_from_url_to_model(user, url) -> None:
-    from io import BytesIO
+    import uuid
+    from tempfile import NamedTemporaryFile
+    from urllib.request import urlopen
 
-    import requests
-    from PIL import Image
+    from django.core.files import File
 
-    response = requests.get(url)
-    img = Image.open(BytesIO(response.content))
-    file_name = f"{user.id}.png"
-    img.save(f"media/{file_name}")
-    user.image = file_name
-    user.save()
+    if url in ["", None]:
+        return
+
+    img_extension = url.split(".")[-1]
+
+    img_temp = NamedTemporaryFile(delete=True)
+    img_temp.write(urlopen(url).read())
+    img_temp.flush()
+    user.image.save(
+        f"{uuid.uuid4()}.{img_extension}",
+        content=File(img_temp),
+        save=True,
+    )
 
 
 def create_or_update_user(user_data: dict) -> None:
