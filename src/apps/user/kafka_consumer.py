@@ -15,6 +15,20 @@ def user_consumer(consumer: Consumer, msg: Message) -> None:
         print(e)
 
 
+def save_image_from_url_to_model(user, url) -> None:
+    from io import BytesIO
+
+    import requests
+    from PIL import Image
+
+    response = requests.get(url)
+    img = Image.open(BytesIO(response.content))
+    file_name = f"{user.id}.png"
+    img.save(f"media/{file_name}")
+    user.image = file_name
+    user.save()
+
+
 def create_or_update_user(user_data: dict) -> None:
     from django.contrib.auth import get_user_model
 
@@ -25,12 +39,13 @@ def create_or_update_user(user_data: dict) -> None:
     else:
         user = User()
 
-    if "image" in user_data:
-        user.image = user_data["image"]
-
     user.email = user_data["email"]
     user.name = user_data["name"]
-    user.is_superuser = user_data["is_superuser"]
-    user.is_staff = user_data["is_staff"]
     user.is_active = user_data["is_active"]
     user.save()
+
+    if "image" in user_data:
+        try:
+            save_image_from_url_to_model(user, user_data["image"])
+        except Exception as e:
+            print("error on save image: ", e)
