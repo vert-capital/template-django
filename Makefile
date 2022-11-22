@@ -74,6 +74,7 @@ sh: show_env
 
 test: show_env
 	docker-compose ${DOCKER_COMPOSE_FILE} exec app pytest
+	sudo chown -R "${USER}:${USER}" ./
 
 psql: show_env
 	docker-compose ${DOCKER_COMPOSE_FILE} exec db psql -d database
