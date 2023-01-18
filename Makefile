@@ -120,7 +120,7 @@ manage: show_env
 	docker-compose ${DOCKER_COMPOSE_FILE} exec app ${PYTHON_EXEC} manage.py ${ARGS}
 
 test-watch: show_env
-	docker-compose ${DOCKER_COMPOSE_FILE} exec app pytest --testmon "${ARGS}"
+	docker-compose ${DOCKER_COMPOSE_FILE} exec app ptw --clear --
 
 coverage: show_env
 	docker-compose ${DOCKER_COMPOSE_FILE} exec app pytest --cov --cov-report xml:coverage.xml

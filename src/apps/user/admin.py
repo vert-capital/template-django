@@ -65,7 +65,7 @@ class UserAdmin(BaseUserAdmin):
 
     search_fields = ("email",)
     ordering = ("email",)
-    filter_horizontal = ()
+    filter_horizontal = ("groups",)
 
     def get_readonly_fields(self, request, obj=None):
         if obj:
