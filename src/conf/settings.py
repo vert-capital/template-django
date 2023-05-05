@@ -290,6 +290,11 @@ FACTORY_ONLY_APPS = [
 
 FACTORY_IGNORE_INIT_IMPORT = True
 
+FACTORY_NORMALIZE_FIELD_MAP = {
+    "JSONField": "TextField",
+    "EmailField": "TextField",
+}
+
 # Django Cors
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = False
