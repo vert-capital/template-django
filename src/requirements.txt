@@ -2,7 +2,6 @@ coverage==6.5.0
 django==3.2.15
 django-filter==22.1
 djangorestframework==3.14.0
-djangorestframework-jwt==1.11.0
 djangorestframework-simplejwt==5.2.1
 easy-thumbnails==2.8.3
 flake8==5.0.4
