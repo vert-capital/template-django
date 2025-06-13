@@ -2,7 +2,24 @@ FROM python:3.9.13-buster
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 
-RUN apt update -y && apt install librdkafka-dev -y
+RUN apt-get update && apt-get install -y \
+    curl \
+    git \
+    build-essential \
+    cmake \
+    libssl-dev \
+    zlib1g-dev \
+    libsasl2-dev \
+    && git clone https://github.com/edenhill/librdkafka.git \
+    && cd librdkafka \
+    && git checkout v1.9.2 \
+    && ./configure \
+    && make \
+    && make install \
+    && ldconfig \
+    && cd .. \
+    && rm -rf librdkafka \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /app
 WORKDIR /app
