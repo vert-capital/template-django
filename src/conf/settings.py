@@ -43,16 +43,12 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "collectfast",
     "django.contrib.staticfiles",
     # third-party apps
     "django_cas_ng",
     "rest_framework",
     "django_q",
-    "widget_tweaks",
-    "easy_thumbnails",
     "django_filters",
-    "ckeditor",
     "debug_toolbar",
     "factory_generator",
     "corsheaders",
@@ -167,7 +163,6 @@ MEDIA_URL = "/media/"
 # STORAGES
 ###
 
-COLLECTFAST_ENABLED = False
 
 if not LOCAL_ENV:
 
@@ -180,11 +175,8 @@ if not LOCAL_ENV:
         "CacheControl": "max-age=86400",
     }
 
-    COLLECTFAST_ENABLED = True
-
     STATICFILES_STORAGE = "conf.storage_backends.StaticStorage"
     DEFAULT_FILE_STORAGE = "conf.storage_backends.PublicMediaStorage"
-    COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
 
     AWS_LOCATION = config("AWS_LOCATION", "")
 
