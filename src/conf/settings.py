@@ -175,8 +175,14 @@ if not LOCAL_ENV:
         "CacheControl": "max-age=86400",
     }
 
-    STATICFILES_STORAGE = "conf.storage_backends.StaticStorage"
-    DEFAULT_FILE_STORAGE = "conf.storage_backends.PublicMediaStorage"
+    STORAGES = {
+        "default": {
+            "BACKEND": "conf.storage_backends.PublicMediaStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "conf.storage_backends.StaticStorage",
+        },
+    }
 
     AWS_LOCATION = config("AWS_LOCATION", "")
 
