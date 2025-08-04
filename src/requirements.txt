@@ -25,7 +25,6 @@ requests-mock==1.10.0
 pip-upgrader
 django-cors-headers==4.7.0
 uvicorn==0.34.3
-elastic-apm==6.23.0
 django-fsm==3.0.0
 pytest-watch==4.2.0
 pillow==11.2.1
