@@ -29,3 +29,4 @@ django-fsm==3.0.0
 pytest-watch==4.2.0
 pillow==11.2.1
 django-cas-ng==4.2.1
+pytz==2024.2
