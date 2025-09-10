@@ -1,5 +1,3 @@
-version: "3.7"
-
 volumes:
   data:
 
@@ -9,5 +7,4 @@ services:
       context: ./src
     env_file: ./src/.env
     environment:
-        - PYTHONUNBUFFERED=1
-
+      - PYTHONUNBUFFERED=1

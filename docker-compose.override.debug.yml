@@ -1,7 +1,6 @@
-version: "3.7"
 services:
-    app:
-        environment:
-            DJANGO_DEBUG: 1
-        ports:
-            - 8888:8888
+  app:
+    environment:
+      DJANGO_DEBUG: 1
+    ports:
+      - 8888:8888
