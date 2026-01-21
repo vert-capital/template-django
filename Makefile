@@ -20,7 +20,14 @@ show_env:
 	ENV_PRINTED=1;"
 
 _cp_env_file:
-	cp -f ./src/.env.sample ./src/.env
+	@cp -f src/.env.sample .env
+
+_ensure_env:
+	@if [ ! -f .env ]; then \
+		echo "Arquivo .env não encontrado. Copiando de src/.env.sample..."; \
+		cp src/.env.sample .env; \
+		echo "Arquivo .env criado com sucesso."; \
+	fi
 
 init: _cp_env_file
 
@@ -28,7 +35,7 @@ _rebuild: show_env
 	docker-compose ${DOCKER_COMPOSE_FILE} down
 	docker-compose ${DOCKER_COMPOSE_FILE} build --no-cache --force-rm
 
-up: show_env
+up: show_env _ensure_env
 	docker-compose ${DOCKER_COMPOSE_FILE} up -d --remove-orphans
 
 up_debug: show_env
