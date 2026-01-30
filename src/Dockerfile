@@ -32,4 +32,4 @@ COPY ./ ./
 
 ENTRYPOINT ["sh", "./docker_assets/entrypoint.sh"]
 
-CMD ["gunicorn", "conf.asgi:application", "-b", "0.0.0.0:8080", "--access-logfile", "-", "--error-logfile", "-", "--log-level", "warning", "-k", "uvicorn.workers.UvicornWorker"]
+CMD ["gunicorn", "conf.asgi:application", "-b", "0.0.0.0:8080", "--workers", "4", "--worker-connections", "1000", "--timeout", "60", "--keep-alive", "5", "--max-requests", "1000", "--max-requests-jitter", "50", "--access-logfile", "-", "--error-logfile", "-", "--log-level", "warning", "-k", "uvicorn.workers.UvicornWorker"]
