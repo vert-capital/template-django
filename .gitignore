@@ -2,6 +2,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/django,vuejs,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=django,vuejs,node
 
+.claude/
+
 static_collected/
 .localstack/
 src/model_factories/admin/
