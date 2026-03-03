@@ -165,3 +165,36 @@ kafka_consumer: show_env
 
 show_coverage: show_env coverage
 	cd src/htmlcov && python3 -m http.server --bind 0.0.0.0 9100
+
+# Trivy - Security Scanner (Docker)
+TRIVY_IMAGE ?= aquasec/trivy:latest
+
+security-scan:
+	@echo "Executando varredura de vulnerabilidades na pasta src (Trivy Docker)..."
+	docker run --rm -v $(PWD):/project -v trivy-cache:/root/.cache/trivy $(TRIVY_IMAGE) fs \
+		--scanners vuln,misconfig,secret \
+		--exit-code 0 \
+		--severity HIGH,CRITICAL,MEDIUM \
+		/project/src
+
+security-scan-json:
+	@echo "Executando varredura de vulnerabilidades (saída JSON)..."
+	docker run --rm -v $(PWD):/project -v trivy-cache:/root/.cache/trivy $(TRIVY_IMAGE) fs \
+		--scanners vuln,misconfig,secret \
+		--exit-code 0 \
+		--severity HIGH,CRITICAL,MEDIUM \
+		--format json \
+		-o /project/trivy-report.json \
+		/project/src
+
+security-scan-table:
+	@echo "Executando varredura de vulnerabilidades (formato tabela)..."
+	docker run --rm -v $(PWD):/project -v trivy-cache:/root/.cache/trivy $(TRIVY_IMAGE) fs \
+		--scanners vuln,misconfig,secret \
+		--exit-code 0 \
+		--format table \
+		/project/src
+
+clean-trivy-cache:
+	@echo "Limpando cache do Trivy..."
+	docker volume rm -f trivy-cache
